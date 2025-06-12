@@ -3,8 +3,6 @@ env:
   DIRS: cex,dex
 on:
   workflow_dispatch:
-  schedule:
-    - cron: '0 */12 * * *'
 jobs:
   run-ton-labels-parser:
     runs-on: ubuntu-latest
