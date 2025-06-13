@@ -4,7 +4,6 @@ import os
 
 from utlis import normalize_address
 
-
 def get_known_assets_addresses() -> set[str]:
     addresses = set()
 

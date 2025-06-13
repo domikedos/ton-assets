@@ -6,20 +6,18 @@ import requests
 from requests.adapters import HTTPAdapter
 from urllib3 import Retry
 
-from models import AssetData
-from readers import get_blacklist_addresses, get_skip_addresses, get_known_assets_addresses
+from to_review.models import AssetData
+from to_review.readers import get_blacklist_addresses, get_skip_addresses, get_known_assets_addresses
 from utlis import normalize_address
-from presenter import generate_html, add_blacklist
+from to_review.presenter import generate_html, add_blacklist
 
 TON_VIEWER_URL = "https://tonviewer.com/"
 TON_API_ACCOUNT_URL = "https://tonapi.io/v2/accounts/"
 
 TON_LABLES_ASSETS_DIR="ton-labels/assets/"
-CURR_DIR = "to_review/"
+TO_REVIEW_DIR = "to_review/"
 TON_LABELS_DIR = "ton-labels/"
 ASSETS_DIR = "assets/"
-TO_REVIEW_CSV_DIR = "to_review/"
-TO_REVIEW_CSV = "to_review/to_review.csv"
 RETURN_DIR = "../"
 
 BLACK_LIST_NFT_TYPES = ["nft_collection", "nft_item", "nft_item_simple"]
@@ -123,11 +121,12 @@ def get_assets_from_dirs(skip_addr_set: set[str]) -> dict[str, list[AssetData]]:
 
 def main():
     try:
+        os.chdir(TO_REVIEW_DIR)
         clone_ton_labels_repo()
 
         os.chdir(RETURN_DIR)
         known_addresses = get_known_assets_addresses()
-        os.chdir(CURR_DIR)
+        os.chdir(TO_REVIEW_DIR)
 
         blacklist_addresses = get_blacklist_addresses()
         skip_addresses = get_skip_addresses()
