@@ -10,7 +10,7 @@ jobs:
       - name: Install libraries
         run: pip3 install -r requirements.txt
       - name: Run ton-labels-parser
-        run: python3 to_review/parser.py
+        run: python3 parser.py
       - name: commit and push if there are changes
         run: |
           if [[ `git status --porcelain` ]]; then
