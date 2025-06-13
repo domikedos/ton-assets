@@ -86,7 +86,7 @@ PAGE_TEMPLATE = """
     #floating-button {{
       max-width: 120px;
       position: fixed;
-      bottom: 30px;
+      top: 3px;
       right: 10px;
       background-color: #007BFF;
       color: white;
