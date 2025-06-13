@@ -1,6 +1,4 @@
 name: Parse assets from ton labels
-env:
-  DIRS: cex,dex
 on:
   workflow_dispatch:
 jobs:
@@ -12,7 +10,7 @@ jobs:
       - name: Install libraries
         run: pip3 install -r requirements.txt
       - name: Run ton-labels-parser
-        run: python3 ton-labels-parser.py
+        run: python3 parser.py
       - name: commit and push if there are changes
         run: |
           if [[ `git status --porcelain` ]]; then
