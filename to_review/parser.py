@@ -6,10 +6,10 @@ import requests
 from requests.adapters import HTTPAdapter
 from urllib3 import Retry
 
-from to_review.models import AssetData
-from to_review.readers import get_blacklist_addresses, get_skip_addresses, get_known_assets_addresses
+from models import AssetData
+from readers import get_blacklist_addresses, get_skip_addresses, get_known_assets_addresses
 from utlis import normalize_address
-from to_review.presenter import generate_html, add_blacklist
+from presenter import generate_html, add_blacklist
 
 TON_VIEWER_URL = "https://tonviewer.com/"
 TON_API_ACCOUNT_URL = "https://tonapi.io/v2/accounts/"

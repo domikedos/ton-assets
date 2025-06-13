@@ -1,6 +1,6 @@
 import csv
 
-from to_review.models import AssetData
+from models import AssetData
 
 ROW_TEMPLATE = """
       <tr class="row{i}">
