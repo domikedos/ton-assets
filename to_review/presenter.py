@@ -132,15 +132,14 @@ PAGE_TEMPLATE = """
               const idx = checkbox.name;
               const address = document.querySelector(`.address${{idx}}`).textContent.trim();
               if (checkbox.checked) {{
-                  const category = document.querySelector(`.category${{idx}}`).value.trim();
                   const name = document.querySelector(`.name${{idx}}`).value.trim();
                   const website = document.querySelector(`.website${{idx}}`).textContent.trim()
                   const description = document.querySelector(`.description${{idx}}`).value.trim()
-                  if (!groupedData[category]) {{
-                      groupedData[category] = [];
+                  if (!groupedData[name]) {{
+                      groupedData[name] = [];
                   }}
 
-                  groupedData[category].push({{ address, name, website, description }});
+                  groupedData[name].push({{ address, name, website, description }});
                   document.querySelector(`.row${{idx}}`).style.backgroundColor = "lightgrey";
               }} else {{
                   groupedData["skiplist"].push(address);
@@ -154,12 +153,12 @@ PAGE_TEMPLATE = """
           }}
 
           const zip = new JSZip();
-          for (const [category, entries] of Object.entries(groupedData)) {{
+          for (const [name, entries] of Object.entries(groupedData)) {{
               let content = "";
               let filename = "";
-              if (category === "skiplist") {{
+              if (name === "skiplist") {{
                 content = entries.join("\\n")
-                filename = `${{category.replace(/\\s+/g, '_').toLowerCase()}}.csv`;
+                filename = "skip_list.csv";
               }} else {{
                 content = entries.map(item => {{
                   const lines = [];
@@ -174,7 +173,7 @@ PAGE_TEMPLATE = """
                   return lines.join("")
                 }}).join("");
 
-                filename = `${{category.replace(/\\s+/g, '_').toLowerCase()}}.yaml`;
+                filename = `${{name.replace(/\\s+/g, '_').toLowerCase()}}.yaml`;
               }}
 
               zip.file(filename, content);
